@@ -1,20 +1,32 @@
-uses ingestion pipeline
+EventStream pipeline example
+--
 
-```
+uses Ingestion pipeline
+
+```xml
     <dependency>
-      <groupId>com.ingestion.pipeline</groupId>
-      <artifactId>ingestion-api</artifactId>
-      <version>0.1.0</version>
+      <groupId>com.event.ingestion.pipeline</groupId>
+      <artifactId>event-ingestion-pipeline</artifactId>
+      <version>1.0</version>
     </dependency>
 ```
 
+Running
+------
+
+```bash
+mvn -DskipTests=true clean package
+cp target/event-pipeline1.war /usr/local/apache-tomcat-9.0.14/webapps/
+
+
+```
 
 Ingestion
 ---------
 
-```
-$ curl -H "Content-Type: application/json" -X POST -d '{"MessageHeader" : { "EventName" : "TestIngestionEvent"}, "someField1" : "someValue1"}' localhost:9090/ingest
-{"eventId":"141a4f3f-19aa-42a7-aa51-51ea997449c8","responseCode":"API-002","responseMessage":"Payload accepted"}
+```bash
+curl --user "ingestion-example:ingestion-example" -H "Content-Type: application/json" -X POST -d '{"eventName" : "TestIngestionEvent", "eventUuid": "1", requiredField1" : "someValue1"}' localhost:8080/event-pipeline1/ingest
+{"eventId":"could not retrieve it","responseCode":"VALIDATION_ERROR","responseMessage":"error getting EventId"}
 ```
 
 
