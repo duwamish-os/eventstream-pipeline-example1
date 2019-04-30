@@ -17,15 +17,13 @@ Running
 ```bash
 mvn -DskipTests=true clean package
 cp target/event-pipeline1.war /usr/local/apache-tomcat-9.0.14/webapps/
-
-
 ```
 
 Ingestion
 ---------
 
 ```bash
-curl --user "ingestion-example:ingestion-example" -H "Content-Type: application/json" -X POST -d '{"eventName" : "TestIngestionEvent", "eventUuid": "1", requiredField1" : "someValue1"}' localhost:8080/event-pipeline1/ingest
+curl --user "ingestion-example:ingestion-example" -H "Content-Type: application/json" -X POST -d '{"eventType" : "TestIngestionEvent", "eventUuid": "1", "requiredField1" : "someValue1"}' localhost:8080/event-pipeline1/ingest
 {"eventId":"could not retrieve it","responseCode":"VALIDATION_ERROR","responseMessage":"error getting EventId"}
 ```
 

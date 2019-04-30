@@ -1,4 +1,4 @@
-package com.event.pipeline1;
+package com.ingestion.api.config;
 
 import com.eventstream.producer.EventProducer;
 import com.eventstream.producer.EventProducerFactory;
@@ -11,9 +11,9 @@ import com.ingestion.api.validation.rules.SchemaRule;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.io.ClassPathResource;
@@ -31,10 +31,12 @@ import java.util.function.Function;
  * on 2/6/17.
  */
 
-@SpringBootApplication(scanBasePackages = "com.event.pipeline1.*")
-public class EventIngestionPipeline1 {
+@Configuration
+@ComponentScan(basePackages = "com.*")
+//@Profile("dev")
+public class EventIngestionPipelineConfig1 {
 
-    @Value("${eventstream.name}")
+    @Value("${stream.name}")
     String eventStreamName;
 
     @Bean
@@ -51,7 +53,7 @@ public class EventIngestionPipeline1 {
 
     @Bean
     @Primary
-    @Qualifier("eventIdLamda")
+    @Qualifier("eventIdLambda")
     Function<String, String> eventIdLamda() {
         return payload -> new JSONObject(payload).getString("eventUuid");
     }
@@ -106,10 +108,6 @@ public class EventIngestionPipeline1 {
     @Bean
     Validator jsonSchemaValidator() {
         return new JsonSchemaValidator();
-    }
-
-    public static void main(String[] args) {
-        SpringApplication.run(EventIngestionPipeline1.class, args);
     }
 
 }
