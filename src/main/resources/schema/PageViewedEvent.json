@@ -2,27 +2,29 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "properties": {
+    "eventUuid": {
+      "type": "number"
+    },
     "eventType": {
       "type": "string"
     },
-    "impressionId": {
+    "pageId": {
       "type": "string"
-    },
-    "eventUuid": {
-      "type": "number"
     },
     "userId": {
       "type": "string"
     },
-    "impressionDate": {
+    "visitorId": {
+      "type": "string"
+    },
+    "pageViewedDate": {
       "type": "string"
     }
   },
   "required": [
-    "eventType",
-    "campaignId",
     "eventUuid",
-    "userId",
-    "campaignDate"
+    "eventType",
+    "pageId",
+    "pageViewedDate"
   ]
 }

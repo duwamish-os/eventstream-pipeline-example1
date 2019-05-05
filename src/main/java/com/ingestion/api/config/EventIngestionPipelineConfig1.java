@@ -62,7 +62,7 @@ public class EventIngestionPipelineConfig1 {
         return payload -> {
             JSONObject jsonObject = new JSONObject(payload);
             return Arrays.asList(
-                    jsonObject.getString("campaignId"),
+                    jsonObject.getString("pageId"),
                     jsonObject.getString("userId"));
         };
     }

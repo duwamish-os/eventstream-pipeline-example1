@@ -26,8 +26,10 @@ Ingestion
 curl --user "ingestion-example:ingestion-example" -H "Content-Type: application/json" -X POST -d '{"eventType" : "TestIngestionEvent", "eventUuid": "1", "requiredField1" : "someValue1"}' localhost:8080/event-pipeline1/ingest
 {"eventId":"1","responseCode":"SUCCESS","responseMessage":"Payload accepted"}
 
-curl --user "ingestion-example:ingestion-example" -H "Content-Type: application/json" -X POST -d '{"eventType":"CampaignEvent","eventUuid":1,"userId":"00792-2B9CEB66-EC8C-4AED-95BA-A865744CAA6B","campaignId":"00792-2B9CEB66-EC8C-4AED-95BA-A865744CAA6B","campaignDate":"2019-05-04T15:53:10.250479-07:00[America/Los_Angeles]"}' localhost:8080/event-pipeline1/ingest
+curl --user "ingestion-example:ingestion-example" -H "Content-Type: application/json" -X POST -d '{"eventType":"CampaignEvent","eventUuid":1,"userId":"00e39e26-0728-4407-92c4-7f24fb70ff08","campaignId":"00e39e26-0728-4407-92c4-7f24fb70ff08","campaignDate":"2019-05-04T15:53:10.250479-07:00[America/Los_Angeles]"}' localhost:8080/event-pipeline1/ingest
 {"eventId":"1","responseCode":"SUCCESS","responseMessage":"Payload accepted"}
+
+curl --user "ingestion-example:ingestion-example" -H "Content-Type: application/json" -X POST -d '{"eventType":"PageViewedEvent","eventUuid":2,"userId":"43271343-2742-4fde-91cb-04c7be364b6a","pageId":"00e39e26-0728-4407-92c4-7f24fb70ff08","pageViewedDate":"2019-05-04T15:53:10.250479-07:00[America/Los_Angeles]"}' localhost:8080/event-pipeline1/ingest
 ```
 
 
