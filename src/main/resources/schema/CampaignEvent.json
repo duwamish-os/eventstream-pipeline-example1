@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "eventType": {
+      "type": "string"
+    },
+    "impressionId": {
+      "type": "string"
+    },
+    "eventUuid": {
+      "type": "number"
+    },
+    "userId": {
+      "type": "string"
+    },
+    "impressionDate": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "eventType",
+    "campaignId",
+    "eventUuid",
+    "userId",
+    "campaignDate"
+  ]
+}

@@ -20,14 +20,11 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 
 /**
- * Created by prayagupd
+ * author prayagupd
  * on 2/6/17.
  */
 
@@ -55,15 +52,19 @@ public class EventIngestionPipelineConfig1 {
     @Primary
     @Qualifier("eventIdLambda")
     Function<String, String> eventIdLamda() {
-        return payload -> new JSONObject(payload).getString("eventUuid");
+        return payload -> new JSONObject(payload).getLong("eventUuid")+"";
     }
 
     @Bean
     @Primary
     @Qualifier("eventPartitionKey")
     Function<String, List<String>> eventPartitionKey() {
-        return payload ->
-                Collections.singletonList(new JSONObject(payload).getString("requiredField1"));
+        return payload -> {
+            JSONObject jsonObject = new JSONObject(payload);
+            return Arrays.asList(
+                    jsonObject.getString("campaignId"),
+                    jsonObject.getString("userId"));
+        };
     }
 
     /**
